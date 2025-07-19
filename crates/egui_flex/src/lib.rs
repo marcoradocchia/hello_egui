@@ -523,6 +523,7 @@ impl Flex {
 
         let r = ui.scope_builder(
             UiBuilder::new()
+                .id_salt(id)
                 .layout(layout)
                 .max_rect(ui.available_rect_before_wrap().round_ui()),
             |ui| {
