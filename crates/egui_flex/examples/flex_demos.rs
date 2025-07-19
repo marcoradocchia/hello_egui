@@ -1,7 +1,7 @@
 use eframe::NativeOptions;
 use egui::{Align2, Button, CentralPanel, ComboBox, Frame, Label};
 use egui_flex::{
-    item, Flex, FlexAlign, FlexAlignContent, FlexDirection, FlexInstance, FlexItem, FlexJustify,
+    Flex, FlexAlign, FlexAlignContent, FlexDirection, FlexInstance, FlexItem, FlexJustify, item,
 };
 use std::num::NonZeroUsize;
 
@@ -49,7 +49,7 @@ fn main() -> eframe::Result {
                         .clicked()
                     {
                         demo_dir = FlexDirection::Horizontal;
-                    };
+                    }
                     if flex
                         .add(
                             FlexItem::new(),
@@ -58,7 +58,7 @@ fn main() -> eframe::Result {
                         .clicked()
                     {
                         demo_dir = FlexDirection::Vertical;
-                    };
+                    }
 
                     flex.add_ui(FlexItem::new(), |ui| ui.checkbox(&mut grow, "Grow"));
                 });

@@ -1,6 +1,6 @@
 [package]
 name = "hello_egui"
-version = "0.8.0"
+version = "0.9.0"
 edition = "2021"
 description = "A collection of useful crates for egui."
 authors = ["Lucas Meurer"]
@@ -65,36 +65,32 @@ egui_thumbhash = { workspace = true, optional = true }
 egui_virtual_list = { workspace = true, optional = true }
 egui_material_icons = { workspace = true, optional = true }
 
-[dev-dependencies]
-hello_egui_utils = { version = "0.8.0", features = ["example_util"] }
-egui.workspace = true
-
-
-
 [workspace]
 members = ["fancy-example", "crates/*", "scripts"]
+exclude = ["crates/egui_taffy"]
 resolver = "2"
 
 [workspace.dependencies]
-egui_dnd = { path = "./crates/egui_dnd", version = "0.12.0" }
-egui_animation = { path = "./crates/egui_animation", version = "0.8.0" }
-hello_egui_utils = { path = "./crates/hello_egui_utils", version = "0.8.0" }
-egui_flex = { path = "./crates/egui_flex", version = "0.3.0" }
-egui_form = { path = "./crates/egui_form", version = "0.5.0" }
-egui_inbox = { path = "./crates/egui_inbox", version = "0.8.0" }
-egui_pull_to_refresh = { path = "./crates/egui_pull_to_refresh", version = "0.8.0" }
-egui_router = { path = "./crates/egui_router", version = "0.4.0" }
-egui_suspense = { path = "./crates/egui_suspense", version = "0.8.0" }
-egui_virtual_list = { path = "./crates/egui_virtual_list", version = "0.7.0" }
-egui_infinite_scroll = { path = "./crates/egui_infinite_scroll", version = "0.7.0" }
-egui_thumbhash = { path = "./crates/egui_thumbhash", version = "0.7.0" }
-egui_material_icons = { path = "./crates/egui_material_icons", version = "0.3.0" }
-hello_egui = { path = ".", version = "0.8.0" }
+egui_dnd = { path = "./crates/egui_dnd", version = "0.13.0" }
+egui_animation = { path = "./crates/egui_animation", version = "0.9.0" }
+hello_egui_utils = { path = "./crates/hello_egui_utils", version = "0.9.0" }
+hello_egui_utils_dev = { path = "./crates/hello_egui_utils_dev", version = "0.1.0" }
+egui_flex = { path = "./crates/egui_flex", version = "0.4.0" }
+egui_form = { path = "./crates/egui_form", version = "0.6.0" }
+egui_inbox = { path = "./crates/egui_inbox", version = "0.9.0" }
+egui_pull_to_refresh = { path = "./crates/egui_pull_to_refresh", version = "0.9.0" }
+egui_router = { path = "./crates/egui_router", version = "0.5.0" }
+egui_suspense = { path = "./crates/egui_suspense", version = "0.9.0" }
+egui_virtual_list = { path = "./crates/egui_virtual_list", version = "0.8.0" }
+egui_infinite_scroll = { path = "./crates/egui_infinite_scroll", version = "0.8.0" }
+egui_thumbhash = { path = "./crates/egui_thumbhash", version = "0.8.0" }
+egui_material_icons = { path = "./crates/egui_material_icons", version = "0.4.0" }
+hello_egui = { path = ".", version = "0.9.0" }
 
-egui = { version = "0.31.0", default-features = false }
-egui_kittest = { version = "0.31" }
-eframe = { version = "0.31.0", default-features = false }
-egui_extras = { version = "0.31.0", default-features = false }
+egui = { version = "0.32", default-features = false }
+egui_kittest = { version = "0.32" }
+eframe = { version = "0.32", default-features = false }
+egui_extras = { version = "0.32", default-features = false }
 rand = "0.9.0"
 simple-easing = "1"
 serde_json = "1"
@@ -130,17 +126,20 @@ missing_fields_in_debug = { level = "allow", priority = 20 }
 doc_markdown = { level = "allow", priority = 21 }
 
 [patch.crates-io]
-#wry = { path = "../../RustroverProjects/github/wry" }
+#wry = { path = "../wry" }
 #
-#egui = { path = "../../IdeaProjects/egui/crates/egui" }
-#eframe = { path = "../../IdeaProjects/egui/crates/eframe" }
-#egui-wgpu = { path = "../../IdeaProjects/egui/crates/egui-wgpu" }
-#egui_extras = { path = "../../IdeaProjects/egui/crates/egui_extras" }
-#egui_kittest = { path = "../../IdeaProjects/egui/crates/egui_kittest" }
-#winit = { path = "../../IdeaProjects/github/winit" }
+#egui = { path = "../egui/crates/egui" }
+#eframe = { path = "../egui/crates/eframe" }
+#egui-wgpu = { path = "../egui/crates/egui-wgpu" }
+#egui_extras = { path = "../egui/crates/egui_extras" }
+#egui_kittest = { path = "../egui/crates/egui_kittest" }
+#winit = { path = "../winit" }
 
 
-# egui = { git = "https://github.com/emilk/egui", branch = "master" }
-# eframe = { git = "https://github.com/emilk/egui", branch = "master" }
-# egui_extras = { git = "https://github.com/emilk/egui", branch = "master" }
-# egui_kittest = { git = "https://github.com/emilk/egui", branch = "master" }
+# egui = { git = "https://github.com/emilk/egui", branch = "main" }
+# eframe = { git = "https://github.com/emilk/egui", branch = "main" }
+# egui_extras = { git = "https://github.com/emilk/egui", branch = "main" }
+# egui_glow = { git = "https://github.com/emilk/egui", branch = "main" }
+# egui_kittest = { git = "https://github.com/emilk/egui", branch = "main" }
+# egui_demo_lib = { git = "https://github.com/emilk/egui", branch = "main" }
+# egui_commonmark = { git = "https://github.com/lucasmerlin/egui_commonmark", branch = "egui-update" }

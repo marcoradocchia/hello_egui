@@ -235,14 +235,13 @@ impl<T: Debug + Send + Sync + 'static, Cursor: Clone + Debug + Send + 'static>
                     if has_cursor {
                         self.end_cursor = cursor;
                     }
-                    let empty = items.is_empty();
                     self.items.extend(items);
 
                     ui.ctx().request_repaint();
-                    if empty || !has_cursor {
-                        LoadingState::NoMoreItems
-                    } else {
+                    if has_cursor {
                         LoadingState::Idle
+                    } else {
+                        LoadingState::NoMoreItems
                     }
                 }
                 state => state,
@@ -257,16 +256,15 @@ impl<T: Debug + Send + Sync + 'static, Cursor: Clone + Debug + Send + 'static>
                     if has_cursor {
                         self.start_cursor = cursor;
                     }
-                    let empty = items.is_empty();
                     let mut old_items = mem::take(&mut self.items);
                     self.items = items;
                     self.items.append(&mut old_items);
 
                     ui.ctx().request_repaint();
-                    if empty || !has_cursor {
-                        LoadingState::NoMoreItems
-                    } else {
+                    if has_cursor {
                         LoadingState::Idle
+                    } else {
+                        LoadingState::NoMoreItems
                     }
                 }
                 state => state,
@@ -312,7 +310,7 @@ impl<T: Debug + Send + Sync + 'static, Cursor: Clone + Debug + Send + 'static>
         let items = Self::filtered_items(&mut self.items, self.filter.as_ref());
 
         if item_range.end + end_prefetch >= items.len()
-            && matches!(self.bottom_loading_state, LoadingState::Idle { .. })
+            && matches!(self.bottom_loading_state, LoadingState::Idle)
         {
             if let Some(end_loader) = &mut self.end_loader {
                 self.bottom_loading_state = LoadingState::Loading;
@@ -331,9 +329,7 @@ impl<T: Debug + Send + Sync + 'static, Cursor: Clone + Debug + Send + 'static>
             }
         }
 
-        if item_range.start < end_prefetch
-            && matches!(self.top_loading_state, LoadingState::Idle { .. })
-        {
+        if item_range.start < end_prefetch && matches!(self.top_loading_state, LoadingState::Idle) {
             if let Some(start_loader) = &mut self.start_loader {
                 self.top_loading_state = LoadingState::Loading;
                 let sender = self.top_inbox.sender();
